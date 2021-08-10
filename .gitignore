@@ -1,5 +1,13 @@
+
+# misc folders
 __pycache__/
 venv/
 .vscode/
 
+# pyinstaller folders and files
+build/
+dist/
+*.spec
+
+# high score file
 high_score.dat
