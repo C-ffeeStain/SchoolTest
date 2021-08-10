@@ -21,3 +21,6 @@ $ py -m venv venv
 $ "venv/scripts/activate.bat"
 $ py -m pip install -r requirements.txt
 ```
+### Building the .exe file
+To build the executable file for releases, you should run this command:
+```pyinstaller --onefile --icon NONE main.py```
