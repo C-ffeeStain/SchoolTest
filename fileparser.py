@@ -1,4 +1,5 @@
 import random
+from pprint import pprint
 
 
 class MultipleChoiceQuestion:
@@ -9,29 +10,27 @@ class MultipleChoiceQuestion:
         if len(answers) == 0:
             raise ValueError("Answers list cannot be empty.")
         self.correct_answer = answers[0]
-        random.shuffle(answers)
         self.answers = answers
+        random.shuffle(self.answers)
 
 
 def parse(file_name):
     """Parses a specific question file (extension must be .mc or .fb) and returns the questions."""
     ext = file_name.split(".")[-1]
-    questions = []
     if ext == "mc":
-        question = ""
-        answers = []
+        questions = []
         with open(file_name, "r") as f:
             lines = [line.removesuffix("\n") for line in f.readlines()]
-        for i, line in enumerate(lines):
-            if line.startswith("Q::"):
-                question = line[3:].strip()
-            elif line.startswith("A::"):
-                answers = line[3:].strip().split(",,")
+            for line in lines:
+                answers = []
+                if line.startswith("Q: "):
+                    question = line[3:].strip()
+                elif line.startswith("A: "):
+                    answers = line[3:].strip().split(",,")
 
-            if answers != []:
-                questions.append(MultipleChoiceQuestion(question, answers))
-
-    elif ext == "fb":
-        pass
+                if answers != []:
+                    mcq = MultipleChoiceQuestion(question, answers)
+                    questions.append(mcq)
     else:
         raise ValueError("Invalid file extension: " + ext)
+    return questions
