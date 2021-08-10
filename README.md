@@ -12,4 +12,12 @@ A: yes,,no,,idk,,i don't think so
 ```
 ## Development
 
-To help with development
+To help with development, you'll need Git and Python 3.8 or later. Here's the list of commands you should run to get the program working. Make sure you're on Windows.
+
+```bash
+$ git clone https://github.com/C-ffeeStain/SchoolTest.git
+$ cd SchoolTest
+$ py -m venv venv
+$ "venv/scripts/activate.bat"
+$ py -m pip install -r requirements.txt
+```
